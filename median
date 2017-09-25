@@ -1,0 +1,20 @@
+#!/usr/bin/python
+from common import get_args, get_values, values2numbers
+
+
+def median(data):
+    data = sorted(data)
+    n = len(data)
+    if n == 0:
+        print "no median for empty data"
+    if n % 2 == 1:
+        return data[n / 2]
+    else:
+        i = n / 2
+        return (data[i - 1] + data[i]) / 2
+
+
+args = get_args()
+values = get_values(args)
+numbers = values2numbers(values)
+print median(numbers)

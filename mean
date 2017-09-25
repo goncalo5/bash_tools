@@ -1,0 +1,17 @@
+#!/usr/bin/python
+import argparse
+from common import get_args, get_values, values2numbers
+
+
+def mean(data):
+    if iter(data) is data:
+        data = list(data)
+    n = len(data)
+    if n < 1:
+        return 'mean requires at least one data point'
+    return sum(data) / n
+
+args = get_args()
+values = get_values(args)
+numbers = values2numbers(values)
+print mean(numbers)

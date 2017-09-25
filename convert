@@ -1,0 +1,36 @@
+#!/usr/bin/python
+
+import argparse
+from common import get_values, values2numbers
+
+
+def get_args():
+    parser = argparse.ArgumentParser()
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("-b", "--bits", action="store_true")
+    group.add_argument("-e", "--engineering", action="store_true")
+    parser.add_argument('values', nargs="*")
+    args = parser.parse_args()
+    return args
+
+args = get_args()
+values = get_values(args)
+numbers = values2numbers(values)
+
+units = ["B", "K", "M", "G", "T", "P", "E"]
+if args.bits or args.engineering:
+    if args.bits:
+        values = [1, 2**10, 2**20, 2**30, 2**40, 2**50, 2**60, 2**999]
+    else:
+        values = [1, 10**3, 10**6, 10**9, 10**12, 10**15, 10**18, 10**99]
+    for number in numbers:
+        for i in xrange(len(units)):
+            if values[i] < number < values[i + 1]:
+                print round(number / values[i], 1), units[i]
+                break
+        else:
+            print number
+
+
+
+

@@ -1,0 +1,8 @@
+#!/usr/bin/python
+from common import get_args, get_values, values2numbers
+
+
+args = get_args()
+values = get_values(args)
+numbers = values2numbers(values)
+print max(numbers)

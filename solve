@@ -1,0 +1,26 @@
+#!/usr/bin/python
+import sys
+
+try:
+    a = sys.argv[1]
+    b = sys.argv[2]
+    c = sys.argv[3]
+except IndexError:
+    try:
+        a, b, c = sys.stdin.read().split()
+    except ValueError:
+        print "invalid input, please insert exactly 3 numbers"
+        exit()
+
+a, b, c = float(a), float(b), float(c)
+d = b**2 - 4 * a * c
+
+if d < 0:
+    print "impossible"
+elif d == 0:
+    x = -b / (2 * a)
+    print x
+else:
+    x1 = (-b + d**0.5) / (2 * a)
+    x2 = (-b - d**0.5) / (2 * a)
+    print x1, x2

@@ -1,0 +1,24 @@
+#!/usr/bin/python
+
+import argparse
+from common import get_values, values2numbers
+
+
+def get_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('limit_number', type=float)
+    parser.add_argument('values', nargs="*")
+    parser.add_argument(
+        '-r', '--reverse', action='store_true', help="print the values below")
+    args = parser.parse_args()
+    return args
+
+args = get_args()
+values = get_values(args)
+numbers = values2numbers(values)
+
+for number in numbers:
+    if number >= args.limit_number and not args.reverse:
+        print number
+    elif number < args.limit_number and args.reverse:
+        print number
